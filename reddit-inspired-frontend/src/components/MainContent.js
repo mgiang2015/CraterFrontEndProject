@@ -6,7 +6,7 @@ class MainContent extends React.Component {
   render() {
     return (
     <div className="main-container">
-      <ThreadContainer />
+      <ThreadContainer data={this.props.data}/>
       <Sidebar />
     </div>
     );
