@@ -15,10 +15,10 @@ body {
   padding: 20px;
 }
 
-.main-container {
+.main-content {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: flex-start;
   padding: 20px;
 }

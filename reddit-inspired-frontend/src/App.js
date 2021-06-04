@@ -11,7 +11,7 @@ import MainContent from './components/MainContent'
 function App() {
   const [threads, setThreads] = useState([]);
   const [subreddit, setSubreddit] = useState('DotA2'); // required to only run useEffect once
-  const redditJsonUrl = 'https://www.reddit.com/r/DotA2.json?limit=10'; // change limit=xxx for fetching xxx posts
+  const redditJsonUrl = 'https://www.reddit.com/r/DotA2.json'; // change limit=xxx for fetching xxx posts
 
   return (
     <div className="App">

@@ -5,8 +5,8 @@ import Sidebar from './Sidebar'
 class MainContent extends React.Component {
   render() {
     return (
-    <div className="main-container">
-      <ThreadContainer data={this.props.data}/>
+    <div className="main-content">
+      <ThreadContainer baseJsonUrl={this.props.baseJsonUrl}/>
       <Sidebar />
     </div>
     );
