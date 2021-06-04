@@ -3,7 +3,6 @@ import PostInformation from './PostInformation';
 import ReactMarkdown from 'react-markdown';
 import {render} from 'react-dom';
 import gfm from 'remark-gfm';
-import HeadingRenderer from './HeadingRenderer'
 
 // Thread has property content, which determines the content to display
 class Thread extends React.Component {  
