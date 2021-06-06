@@ -2,7 +2,7 @@
 ## About
 * CraterFrontEndProject is a webpage modelled after [DotA2 subreddit](https://www.reddit.com/r/DotA2)
 * Resources:
-..* [Reddit API for DotA2 subreddit](https://www.reddit.com/r/DotA2.json)
+⋅⋅* [Reddit API for DotA2 subreddit](https://www.reddit.com/r/DotA2.json)
 
 ## Installations
 * Clone this github repository to your local machine.
