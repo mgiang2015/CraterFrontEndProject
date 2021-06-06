@@ -16,15 +16,17 @@ class ThreadContainer extends React.Component {
 
   handleSortChange(e) {
     let buttonPressed = e.target.value;
-    this.setState({threadLimit: 10});
-    this.setState({sortBy: buttonPressed});
     console.log("User presssed: " + e.target.value);
-    this.getRedditJson(this.state.threadLimit);
+    let newThreadLimit = 10;
+    this.getRedditJson(this.state.threadLimit, buttonPressed);
+    this.setState({sortBy: buttonPressed});
+    this.setState({threadLimit: 10});
   }
 
-  getRedditJson(threadLimit) {
+  getRedditJson(threadLimit, sortKey) {
     this.setState({loading: true});
-    let jsonUrlWithLimit = this.props.subRedditUrl + this.state.sortBy + ".json" + "?limit=" + threadLimit;
+    let jsonUrlWithLimit = this.props.subRedditUrl + sortKey + ".json" + "?limit=" + threadLimit;
+    console.log("Fetching from: " + jsonUrlWithLimit);
     fetch(jsonUrlWithLimit).then(res => {
       if (res.status !== 200) { // Not ok
         console.log("Error fetching Json status: " + res.status);
@@ -47,7 +49,7 @@ class ThreadContainer extends React.Component {
 
   // Hook for when ThreadContainer mounts
   componentDidMount() {
-    this.getRedditJson(this.state.threadLimit);
+    this.getRedditJson(this.state.threadLimit, this.state.sortBy);
 
     var options = {       // wtf is this
       root: null,         // root to use for intersection?
@@ -70,7 +72,7 @@ class ThreadContainer extends React.Component {
       // time to load!!
       const lastThread = this.state.threads[this.state.threads.length - 1]; // last element
       const newThreadLimit = this.state.threadLimit + 10;
-      this.getRedditJson(newThreadLimit);
+      this.getRedditJson(newThreadLimit, this.state.sortBy);
       this.setState({ threadLimit: newThreadLimit});
     }
     this.setState({ prevY: y })
