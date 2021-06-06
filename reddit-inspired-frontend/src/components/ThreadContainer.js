@@ -9,12 +9,22 @@ class ThreadContainer extends React.Component {
       loading: false,
       threadLimit: 10,
       prevY: 0, // for keeping track of Y coordinates
+      sortBy: 'hot', // for changing sortBy
     };
+    this.handleSortChange = this.handleSortChange.bind(this);
+  }
+
+  handleSortChange(e) {
+    let buttonPressed = e.target.value;
+    this.setState({threadLimit: 10});
+    this.setState({sortBy: buttonPressed});
+    console.log("User presssed: " + e.target.value);
+    this.getRedditJson(this.state.threadLimit);
   }
 
   getRedditJson(threadLimit) {
     this.setState({loading: true});
-    let jsonUrlWithLimit = this.props.baseJsonUrl + "?limit=" + threadLimit;
+    let jsonUrlWithLimit = this.props.subRedditUrl + this.state.sortBy + ".json" + "?limit=" + threadLimit;
     fetch(jsonUrlWithLimit).then(res => {
       if (res.status !== 200) { // Not ok
         console.log("Error fetching Json status: " + res.status);
@@ -69,6 +79,11 @@ class ThreadContainer extends React.Component {
   render() {
     return (
     <div className="thread-container">
+        <div className="controls">
+          <button className="control-btn" onClick={(e) => this.handleSortChange(e)} value='hot'>Hot</button>
+          <button className="control-btn" onClick={(e) => this.handleSortChange(e)} value='new'>New</button>
+          <button className="control-btn" onClick={(e) => this.handleSortChange(e)} value='top'>Top</button>
+        </div>
       <div>
         {
           this.state.threads.map((thread, index) => <Thread key={thread.data.id} threadData={thread.data}/>)

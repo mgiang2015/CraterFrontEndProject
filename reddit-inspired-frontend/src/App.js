@@ -9,11 +9,11 @@ import MainContent from './components/MainContent'
 function App() {
   const [threads, setThreads] = useState([]);
   const [subreddit, setSubreddit] = useState('DotA2'); // required to only run useEffect once
-  const redditJsonUrl = 'https://www.reddit.com/r/DotA2.json'; // change limit=xxx for fetching xxx posts
+  const subRedditUrl = 'https://www.reddit.com/r/DotA2/'; // change limit=xxx for fetching xxx posts
 
   return (
     <div className="App">
-      <MainContent baseJsonUrl={redditJsonUrl}/>
+      <MainContent subRedditUrl={subRedditUrl}/>
     </div>
   );
 }

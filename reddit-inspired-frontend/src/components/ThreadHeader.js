@@ -9,7 +9,7 @@ class ThreadHeader extends React.Component {
     return (
     <div>
       <h6>{infoString}</h6>
-      <div class="thread-stats">
+      <div className="thread-stats">
         <VotingArea score={this.props.score}/>
         <span>{comments}</span>
       </div>

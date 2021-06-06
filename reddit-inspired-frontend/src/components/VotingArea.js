@@ -48,9 +48,9 @@ class VotingArea extends React.Component {
 	render() {
 		return (
 			<div>
-				<button class="vote-btn" onClick={this.handleDownVote}>Downvote</button>
-				<span class={this.getScoreClass()}>{this.state.currentScore}</span>
-				<button class="vote-btn" onClick={this.handleUpVote}>Upvote</button>
+				<button className="vote-btn" onClick={this.handleDownVote}>Downvote</button>
+				<span className={this.getScoreClass()}>{this.state.currentScore}</span>
+				<button className="vote-btn" onClick={this.handleUpVote}>Upvote</button>
 			</div>
 		);
 	}
