@@ -2,9 +2,7 @@
 // import Datetime from 'react-datetime'; // a bit buggy now
 import './App.css';
 import React, {useState, useEffect} from 'react';
-
 // import other components
-import Header from './components/Header'
 import MainContent from './components/MainContent'
 
 // App is also responsible for fetching JSON from provided reddit json url
@@ -15,7 +13,6 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
       <MainContent baseJsonUrl={redditJsonUrl}/>
     </div>
   );
