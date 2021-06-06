@@ -7,21 +7,16 @@
 ## Installations
 1. Clone this github repository to your local machine.
 1. Navigate to the React project repository
-
 > `cd CraterFrontEndProject/reddit-inspired-frontend`
 1. Install the necessary dependencies
-
 > `npm install`
 1. Installations for markdown formatting support
-
-> `npm install react-markdown`
-
+> `npm install react-markdown`\
+> 
 > `npm install remark-gfm`
 1. Proceed to run the project
-
 > `npm start`
 1. If a browser does not automatically start after 0.5 minutes, you can manually paste this link into your browser:
-
 > `http://localhost:3000/`
 
 ## Features
