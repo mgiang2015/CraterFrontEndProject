@@ -1,5 +1,5 @@
 import React from 'react';
-import Thread from './Thread';
+import { ClassicThread, CardThread, CompactThread } from './Thread';
 
 class ThreadContainer extends React.Component {
   constructor(props) {
@@ -10,8 +10,11 @@ class ThreadContainer extends React.Component {
       threadLimit: 10,
       prevY: 0, // for keeping track of Y coordinates
       sortBy: 'hot', // for changing sortBy
+      viewMode: 'classic', // for changing view modes
     };
     this.handleSortChange = this.handleSortChange.bind(this);
+    this.handleViewChange = this.handleViewChange.bind(this);
+    this.createJsxThreads = this.createJsxThreads.bind(this);
   }
 
   handleSortChange(e) {
@@ -21,6 +24,23 @@ class ThreadContainer extends React.Component {
     this.getRedditJson(this.state.threadLimit, buttonPressed);
     this.setState({sortBy: buttonPressed});
     this.setState({threadLimit: 10});
+  }
+
+  handleViewChange(e) {
+    let buttonPressed = e.target.value;
+    console.log("User presssed: " + e.target.value);
+    this.setState({viewMode: buttonPressed});
+  }
+
+  createJsxThreads() {
+    switch (this.state.viewMode) {
+      case 'classic':
+        return this.state.threads.map((thread, index) => <ClassicThread key={thread.data.id} threadData={thread.data}/>);
+      case 'card':
+        return this.state.threads.map((thread, index) => <CardThread key={thread.data.id} threadData={thread.data}/>);
+      case 'compact':
+        return this.state.threads.map((thread, index) => <CompactThread key={thread.data.id} threadData={thread.data}/>);
+    }
   }
 
   getRedditJson(threadLimit, sortKey) {
@@ -82,18 +102,23 @@ class ThreadContainer extends React.Component {
     return (
     <div className="thread-container">
         <div className="controls">
-          <button className="control-btn" onClick={(e) => this.handleSortChange(e)} value='hot'>Hot</button>
-          <button className="control-btn" onClick={(e) => this.handleSortChange(e)} value='new'>New</button>
-          <button className="control-btn" onClick={(e) => this.handleSortChange(e)} value='top'>Top</button>
+          <div className="sort-controls">
+            <button className="control-btn" onClick={(e) => this.handleSortChange(e)} value='hot'>Hot</button>
+            <button className="control-btn" onClick={(e) => this.handleSortChange(e)} value='new'>New</button>
+            <button className="control-btn" onClick={(e) => this.handleSortChange(e)} value='top'>Top</button>
+          </div>
+          <div className="view-controls">
+            <button className="control-btn" onClick={(e) => this.handleViewChange(e)} value='classic'>Classic</button>
+            <button className="control-btn" onClick={(e) => this.handleViewChange(e)} value='compact'>Compact</button>
+            <button className="control-btn" onClick={(e) => this.handleViewChange(e)} value='card'>Card</button>
+          </div>            
         </div>
-      <div>
-        {
-          this.state.threads.map((thread, index) => <Thread key={thread.data.id} threadData={thread.data}/>)
-        }
-      </div>
-      <div ref={loadingRef => (this.loadingRef = loadingRef)}>
-        <span>Loading...</span>
-      </div>
+        <div>
+          {this.createJsxThreads()}
+        </div>
+        <div ref={loadingRef => (this.loadingRef = loadingRef)}>
+          <span>Loading...</span>
+        </div>
     </div>
 
     );

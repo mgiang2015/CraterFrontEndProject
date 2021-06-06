@@ -4,7 +4,9 @@ import VotingArea from './VotingArea';
 // Extra: Implement number of comments, upvote, downvote
 class ThreadHeader extends React.Component {
   render() {
-    const infoString = "Posted by u/" + this.props.author + " on " + this.props.date;
+    const dateOfPost = new Date(this.props.date*1000);
+    const formattedDate = dateOfPost.getDate() + "/" + (dateOfPost.getMonth() + 1) + "/" + dateOfPost.getFullYear();
+    const infoString = "Posted by u/" + this.props.author + " on " + formattedDate;
     const comments = "Comments: " + this.props.num_comments;
     return (
     <div>
@@ -13,7 +15,7 @@ class ThreadHeader extends React.Component {
         <VotingArea score={this.props.score}/>
         <span>{comments}</span>
       </div>
-      <h2>{this.props.title}</h2>
+      <a href={this.props.url}><h2>{this.props.title}</h2></a>
     </div>
     );
   }
