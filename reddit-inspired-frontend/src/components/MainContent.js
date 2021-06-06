@@ -7,7 +7,6 @@ class MainContent extends React.Component {
     return (
     <div className="main-content">
       <ThreadContainer baseJsonUrl={this.props.baseJsonUrl}/>
-      <Sidebar />
     </div>
     );
   }

@@ -7,6 +7,8 @@ body {
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+  position: fixed;
+  top: 0;
 }
 
 .logo {
@@ -42,12 +44,28 @@ body {
   background-color: white;
 }
 
-.sidebar {
-  width: 20%;
-  border-style: solid;
-  border-color: black;
-  border-width: 1px 1px 1px 1px;
-  background-color: white;
+.thread-stats {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 5px 0px 0px;
+}
+
+.vote-btn {
+  margin: 0px 5px 0px 5px;
+}
+
+.normal-score {
+  color: black;
+}
+
+.up-score {
+  color: green;
+}
+
+.down-score {
+  color: red;
 }
 
 .App-logo {
